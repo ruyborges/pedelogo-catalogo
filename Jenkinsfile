@@ -9,6 +9,8 @@ pipeline {
     }
 
     stage('Build Image'){
+        def dockerHome = tool 'myDocker'
+        env.PATH = "${dockerHome}/bin:${env.PATH}"
       steps {
         script {
           dockerapp = docker.build("ruyborges/api-produto:${env.BUILD_ID}", 
@@ -18,6 +20,8 @@ pipeline {
     }
     
     stage('Push Image'){
+        def dockerHome = tool 'myDocker'
+        env.PATH = "${dockerHome}/bin:${env.PATH}"
       steps {
         script {
           docker.withRegistry('https://registry.hub.docker.com', 'dockerhub' ) {
