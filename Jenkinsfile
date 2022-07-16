@@ -15,7 +15,7 @@ pipeline {
           def dockerHome = tool 'Docker'
           env.PATH = "${dockerHome}/bin:${env.PATH}"
           dockerapp = docker.build("ruyborges/api-produto:${env.BUILD_ID}", 
-            '-f ./src/PedeLogo.Catalogo.Api/Dockerfile .')
+            ' -v /var/run/docker.sock:/var/run/docker.sock -f ./src/PedeLogo.Catalogo.Api/Dockerfile .')
         }
       }
     }
