@@ -9,7 +9,7 @@ pipeline {
     }
 
     stage('Build Image'){
-        def dockerHome = tool 'myDocker'
+        def dockerHome = tool 'Docker'
         env.PATH = "${dockerHome}/bin:${env.PATH}"
       steps {
         script {
@@ -20,7 +20,7 @@ pipeline {
     }
     
     stage('Push Image'){
-        def dockerHome = tool 'myDocker'
+        def dockerHome = tool 'Docker'
         env.PATH = "${dockerHome}/bin:${env.PATH}"
       steps {
         script {
