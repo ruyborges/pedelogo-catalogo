@@ -12,8 +12,6 @@ pipeline {
         
       steps {
         script {
-          def dockerHome = tool 'Docker'
-          env.PATH = "${dockerHome}/bin:${env.PATH}"
           dockerapp = docker.build("ruyborges/api-produto:${env.BUILD_ID}", 
             '-f ./src/PedeLogo.Catalogo.Api/Dockerfile .')
         }
@@ -24,9 +22,7 @@ pipeline {
         
       steps {
         script {
-          def dockerHome = tool 'Docker'
-          env.PATH = "${dockerHome}/bin:${env.PATH}"
-          docker.withRegistry('https://registry.hub.docker.com', 'dockerhub' ) {
+         docker.withRegistry('https://registry.hub.docker.com', 'dockerhub' ) {
             dockerapp.push('latest')
             dockerapp.push("${env.BUILD_ID}")
           }
