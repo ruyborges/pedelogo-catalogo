@@ -20,8 +20,3 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "PedeLogo.Catalogo.Api.dll"]
-
-FROM jenkins/inbound-agent:latest-alpine-jdk8
-USER root
-RUN apk add –no-cache curl
-USER jenkins
