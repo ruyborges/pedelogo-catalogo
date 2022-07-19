@@ -12,6 +12,7 @@ pipeline {
         
       steps {
         script {
+          sh 'service docker start'
           dockerapp = docker.build("ruyborges/api-produto:${env.BUILD_ID}", 
             '-f ./src/PedeLogo.Catalogo.Api/Dockerfile .')
         }
